@@ -22,7 +22,7 @@
 	color: red;
 	animation: blinker 1.5s linear infinite;
 }
-.email, .password {
+.email, .password, .nama, .alamat {
 	width: 100%;
 	height: 30px;
 	border-radius: 8px;	 
@@ -31,14 +31,19 @@
     border: 1px solid rgb(190, 190, 211);
     background-color: rgb(250, 248, 255);
 }
-.email:focus, .password:focus {
+.email:focus, .password:focus, .nama:focus, .alamat:focus {
    outline: 1px solid rgb(152, 152, 172);
 }
-.email {
+
+.nama {
 	margin-top: 20px;
-	margin-bottom: 15px;
 }
+.alamat , .email{
+	margin-top: 10px;
+}
+
 .password {
+	margin-top: 10px;
 	margin-bottom: 40px
 }
 .submitBtn {

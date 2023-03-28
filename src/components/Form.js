@@ -6,6 +6,8 @@ import * as Validator from 'validatorjs';
 function Form() {
    const [formData, setFormData] = useState(
         {
+            nama: "",
+            alamat: "",
             email: "",
             password: "",  
             errors: []
@@ -25,11 +27,13 @@ function Form() {
 
 	function handleSubmit(event) {
         event.preventDefault()
-       	const {email, password} = formData
+       	const {nama, alamat, email, password} = formData
 
-       	let data = {email, password}
+       	let data = {nama, alamat, email, password}
 
        	let rules = {
+          nama: 'min:3|required',
+          alamat: 'min:10|required',
        		email: 'required|email',
        		password: 'min:8|required'
        	};
@@ -41,6 +45,8 @@ function Form() {
             return {
                 ...prevFormData,
                 errors: [
+                  ...validation.errors.get('nama'),
+                  ...validation.errors.get('alamat'),
                 	...validation.errors.get('email'),
                 	...validation.errors.get('password')
                 ]
@@ -53,14 +59,30 @@ function Form() {
         <p className="error-msg" key={i}>{item}</p>       
     ))
 
-    console.log(formData)
+    // console.log(formData)
 
   return (
     <div className="form-container">
-      <h3 className="title-form">Log In</h3>
+      <h3 className="title-form">Registration</h3>
        {formData.errors.length !== 0 && <div className="error-container">{showError}</div>}
       <form className="form-control" onSubmit={handleSubmit}>
       	<input 
+        type="text" 
+        name="nama" 
+        className="nama"
+        value={formData.nama}
+        placeholder="nama"
+        onChange={handleChange}
+      />
+      <input 
+        type="text" 
+        name="alamat" 
+        className="alamat"
+        value={formData.alamat}
+        placeholder="alamat"
+        onChange={handleChange}
+      />
+        <input 
 	      type="email" 
 	      name="email" 
 	      className="email"
